@@ -45,3 +45,13 @@ const accessChat = async (req, res) => {
     }
   }
 };
+
+const getChats = async (req, res) => {
+  try {
+    Chat.find({ users: { $elemMatch: { $eq: req.user._id } } }).then((res) => {
+      res.send(res);
+    });
+  } catch (error) {}
+};
+
+module.exports = { accessChat };
